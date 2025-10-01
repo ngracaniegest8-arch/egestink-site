@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery</title>
+<style>
+/* BACKGROUND */
+body {
+    margin: 0;
+    padding: 0;
+    background: url('s.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+/* FOTOT-MIA BUTTONS */
+@font-face {
+    font-family: 'gang';
+    src: url(fontgang.otf) format('opentype');
+    
+}
+.fotot-mia {
+    display: flex;
+    gap: 40px; /* hapësira midis butonave */
+    position: absolute;
+    top: 18px;
+    left: 16px;
+}
+.fotot-mia button {
+    background: none;
+    border: none;
+    color: aliceblue;
+    font-family: 'gang', cursive;
+    font-size: 40px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.fotot-mia button:hover {
+    color: gold;
+        
+}
+/* container i madh */
+.gallery-container {
+  max-width: 1000px; 
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* pjesa bosh lart për tekst */
+.gallery-header {
+  margin-bottom: 50px; /* hapësirë mes tekstit dhe fotove */
+}
+
+.gallery-header h2 {
+  font-style: italic;
+  color: white;
+  
+}
+
+/* grid i fotove poshtë */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* gjithmonë 3 foto në rresht */
+  gap: 15px;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.photo img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+  transform: translateX(0);
+}
+/* Lightbox background */
+.lightbox {
+  display: none; /* fshehur default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Foto brenda modalit */
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+/* Butoni mbyllës */
+.lightbox .close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* Shigjetat */
+.lightbox .prev,
+.lightbox .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.lightbox .prev { left: 20px; }
+.lightbox .next { right: 20px; }
+
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  color: #ccc;
+}
+
+
+.photo img {
+  transform: scale(1.05) translateY(-5px); /* fillon direkt me vlerën e zoom */
+}
+
+.photo img.zoomed {
+  animation: pulseZoom 2s infinite alternate; /* nis pulse direkt */
+}
+
+@keyframes pulseZoom {
+  0% { transform: scale(1.05) translateY(-5px); }
+  100% { transform: scale(1.08) translateY(-8px); }
+}
+.gallery-header {
+  text-align: center;
+}
+
+.gallery-header h2 {
+  font-family: 'gang2', sans-serif;
+  font-size: 100px;
+  color: white;
+  margin: 0;
+  font-weight: normal;
+  display: inline-block;
+}
+
+.gallery-header h2 span {
+  opacity: 0;
+  display: inline-block;
+  transition: opacity 0.3s ease; /* smooth fade */
+}
+
+/*pjesa like koment*/
+
+
+
+
+
+@font-face {
+    font-family: 'gang2';
+    src: url(fontgang2.ttf) format(opentype);
+}
+
+
+
+
+
+   
+
+
+</style>
+</head>
+<body>
+    <div id="intro-slide">
+  <div id="progress-bar"></div>
+</div>
+
+
+
+   
+
+<div class="fotot-mia">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='gallery.html'">Gallery</button>
+    <button onclick="window.location.href='contacts.html'">Contacts</button>
+</div>
+<!-- Modal për foton -->
+ <!-- Lightbox (vetëm një herë) -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <span class="prev">&#10094;</span>
+  <img class="lightbox-content" id="lightbox-img">
+  <span class="next">&#10095;</span>
+</div>
+
+<!--pjesa like coment-->
+
+<!-- pjesa like koment-->
+
+
+
+
+
+
+
+<div class="gallery-container">
+  <div class="gallery-header">
+    <h2>Tattoo gallery</h2>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="photo">
+      <img src="foto/foto1.JPG" alt="Foto1">
+      <div class="overlay"></div>
+    </div>
+    <div class="photo">
+      <img src="foto/foto10.JPG" alt="Foto2">
+      <div class="overlay"></div>
+    </div>
+    <div class="photo">
+      <img src="foto/foto3.webp" alt="Foto3">
+      <div class="overlay"></div>
+    </div>
+    <div class="photo">
+      <img src="foto/foto4.webp" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+  <div>
+    <div class="photo">
+      <img src="foto/foto5.jpg" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+  </div>
+   <div>
+    <div class="photo">
+      <img src="foto/foto8.jpg" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+   </div>
+    <div class="photo">
+      <img src="foto/foto7.JPG" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+  
+
+     
+    <div class="photo">
+      <img src="foto/foto6.jpg" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/foto9.JPG" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/foto2.webp" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/foto11.jpg" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/foto12.JPG" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/foto14.jpg" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+    
+
+  </div>
+  </div>
+</div>
+
+     
+
+        
+    </div>
+  </div>
+</div>
+
+
+
+
+<script src="javascript/js.js"> </script>
+
+
+
+</body>
+</html>

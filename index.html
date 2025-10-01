@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    
+<head>
+   
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Butoni Home</title>
+
+<style>
+    body {cursor: url('pen.png'), pointer;}
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('s.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    h1 {
+        color: rgb(255, 255, 255);
+        font-size: 40px;
+        text-align: center;
+        position: absolute;
+        top: 20px;
+        width: 100%;
+    }
+    h2{color: #ccc;
+    text-align: center ;}
+
+
+    .login-box{
+        display: flex;
+        flex-direction:column;
+        gap: 5px;
+        align-items: center;
+        
+        border-radius: 10px;
+        transform: (-50px);
+    }
+    .login-box {
+        transform:translateX(-500px)
+        translateY(-400px);
+         
+    }
+  
+
+    .login-box input {
+        width: 300px;
+        padding: 10px;
+        border-radius: 16px;
+        border: 1px solid #ccc;
+    }
+
+    .login-box button{
+        width: 60px;
+        height: 60px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border:none;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: none;
+        
+    }
+    .login-box button {
+      width: 60px;          /* madhësia e butonit */
+      height: 60px;
+      border: none;
+      border-radius: 50%;   /* e bën rreth */
+      cursor: pointer;
+      background-color: none;
+      overflow: hidden;     /* fsheh çdo pjesë të fotos që del jashtë */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px auto;
+    }
+    .login-box button img {
+      width: 400%;     /* fotoja do përshtatet brenda butonit */
+      height: 200%;
+      object-fit: cover;  /* e pret dhe e rregullon që të mos shtrembërohet */
+      border-radius: 50%; /* opsionale: e bën edhe foton vetë rreth */
+    }
+    
+    .fotot-mia {
+    display: flex;
+    gap: 40px; /* hapësira midis butonave */
+    position: absolute;
+    top: 18px;
+    left: 16px;
+}
+
+.fotot-mia button {
+    background: none;
+    border: none;
+    color: aliceblue;
+    font-size: 40px;
+    font-family: gang;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+    .fotot-mia button:hover {
+    color: gold;
+   
+}
+.fotot-mia {
+    display: flex;
+    gap: 40px; /* hapësira midis butonave */
+    
+    top: 20px;
+    left: 20px;}
+
+@font-face{
+    font-family: gang;
+    src: url(fontgang.otf) format(opentype);
+}
+    
+
+
+    
+
+    
+
+    
+</style>
+</head>
+<body>
+    <div class="fotot-mia">
+    <button onclick="window.location.href='index.html'">Home</button>
+    <button onclick="window.location.href='gallery.html'">Gallery</button>
+    <button onclick="window.location.href='contacts.html'">Contacts</button>
+</div>
+    
+
+    
+    
+
+<div class="login-box">
+    
+    
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">
+            <img src="g.jpg" alt="Login">
+        </button>
+    </form>
+</div>
+<script src="javascript/js.js"> </script>
+</body>
+</html>
