@@ -10,16 +10,16 @@
 <title>Butoni Home</title>
 
 <style>
-    body {cursor: url('pen.png'), pointer;}
+    
     body {
         margin: 0;
         padding: 0;
         background: url('s.jpg') no-repeat center center fixed;
         background-size: cover;
         font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        
+        
+        
         height: 100vh;
     }
 
@@ -35,93 +35,109 @@
     text-align: center ;}
 
 
-    .login-box{
-        display: flex;
-        flex-direction:column;
-        gap: 5px;
-        align-items: center;
-        
-        border-radius: 10px;
-        transform: (-50px);
-    }
-    .login-box {
-        transform:translateX(-500px)
-        translateY(-400px);
-         
-    }
-  
-
-    .login-box input {
-        width: 300px;
-        padding: 10px;
-        border-radius: 16px;
-        border: 1px solid #ccc;
-    }
-
-    .login-box button{
-        width: 60px;
-        height: 60px;
-        padding: 10px 20px;
-        font-size: 16px;
-        border:none;
-        border-radius: 50%;
-        cursor: pointer;
-        background-color: none;
-        
-    }
-    .login-box button {
-      width: 60px;          /* madhësia e butonit */
-      height: 60px;
-      border: none;
-      border-radius: 50%;   /* e bën rreth */
-      cursor: pointer;
-      background-color: none;
-      overflow: hidden;     /* fsheh çdo pjesë të fotos që del jashtë */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 15px auto;
-    }
-    .login-box button img {
-      width: 400%;     /* fotoja do përshtatet brenda butonit */
-      height: 200%;
-      object-fit: cover;  /* e pret dhe e rregullon që të mos shtrembërohet */
-      border-radius: 50%; /* opsionale: e bën edhe foton vetë rreth */
-    }
     
-    .fotot-mia {
-    display: flex;
-    gap: 40px; /* hapësira midis butonave */
-    position: absolute;
-    top: 18px;
-    left: 16px;
-}
-
-.fotot-mia button {
-    background: none;
-    border: none;
-    color: aliceblue;
-    font-size: 40px;
-    font-family: gang;
-    letter-spacing: 2px;
-    cursor: pointer;
-}
-    .fotot-mia button:hover {
-    color: gold;
-   
-}
-.fotot-mia {
-    display: flex;
-    gap: 40px; /* hapësira midis butonave */
     
-    top: 20px;
-    left: 20px;}
+    
 
 @font-face{
     font-family: gang;
     src: url(fontgang.otf) format(opentype);
 }
     
+/* Slide bar poshtë */
+.slide-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color:white;
+  display: flex;
+  justify-content: space-around;
+  padding: 4.4px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+/* Stilizimi i ikonave */
+.slide-bar a {
+  color: white;
+  font-size: 15px; /* madhësia e ikonës */
+  text-decoration: none;
+  padding: 1px;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.slide-bar a:hover {
+  background-color: #555;
+  transform: scale(1.2); /* efekt i vogël kur hover */
+}
+
+/* Shmang mbulimin e përmbajtjes nga slide bar */
+body {
+  padding-bottom: 60px; /* i njëjti lartësi si slide bar */
+}
+/* Të gjitha ikonat brenda slide-bar me background rrethor dhe hije */
+.slide-bar a {
+  background-color: #000000;                /* sfond i bardhë */
+  color: #ffffff;                           /* ngjyra e ikonës */
+  border-radius: 50%;                    /* rrethor */
+  padding: 12px;                         /* hapësira brenda rrethit */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* hije */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* efekt hover */
+}
+
+/* Hover efekt për ikonat */
+.slide-bar a:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+}
+.profile {
+  position: absolute;
+  top: 20%;   /* vendos sipas dëshirës */
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile img {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border: 2px solid #c67a38;
+  filter: brightness(20%);
+}
+
+/* Logo */
+.logo img {
+    position: absolute;
+    top: 28%;   /* vendos sipas dëshirës */
+  left: 10%;
+    width: 400px;
+    height: 200px;
+    object-fit: cover;
+
+  /* fillon lart jashtë vendit dhe pa dukshmëri */
+    transform: translateY(-300px);
+    opacity: 0;
+
+    /* animacion me bounce */
+    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                opacity 1.2s ease-out;
+  }
+
+
+
+
+
+
+
+
+
+
+
 
 
     
@@ -132,26 +148,61 @@
 </style>
 </head>
 <body>
-    <div class="fotot-mia">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='gallery.html'">Gallery</button>
-    <button onclick="window.location.href='contacts.html'">Contacts</button>
+  <div class="profile">
+  <img src="foto/fkryesore.JPG" alt="Profile Photo">
 </div>
+
+
+<div class="logo">
+  <img src="foto/logo.png" alt="logo foto">
+</div>
+
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const logo = document.querySelector(".logo img");
+
+    if (logo) {
+      // vonesë e vogël për animacion
+      setTimeout(() => {
+        logo.style.transform = "translateY(0)";
+        logo.style.opacity = "1";
+      }, 100); 
+    }
+  });
+</script>
+
+
+
+
+
+
+    
+
+<!-- Lidh Font Awesome për ikonat -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+<!-- Slide Bar Poshtë vetëm me ikona -->
+<div class="slide-bar">
+  <a href="index.html"><i class="fas fa-home"></i></a>
+  <a href="Gallery.html"><i class="fas fa-image"></i></a>
+  <a href="#contact"><i class="fas fa-envelope"></i></a>
+   <a href="#menu" class="icon" style="left:75%"><i class="fas fa-bars"></i></a>
+</div>
+
+
+
+
+
+
+
+
     
 
     
     
 
-<div class="login-box">
-    
-    
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">
-            <img src="g.jpg" alt="Login">
-        </button>
-    </form>
-</div>
-<script src="javascript/js.js"> </script>
+
+<script src="javascript/js.js" defer> </script>
 </body>
 </html>

@@ -1,21 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Zgjedhim elementin login-box
-    const loginBox = document.querySelector('.login-box');
-    if (!loginBox) return;
-
-    // Vendosim fillimisht që të jetë invisible dhe lart
-    loginBox.style.opacity = '0';
-    
-    loginBox.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-
-    // Vendosim një delay të vogël për animacion
-    setTimeout(() => {
-        loginBox.style.opacity = '1';
-        loginBox.style.transform = 'translateY(-500px)';
-        loginBox.style.transform = 'translatex(-500px)';
-        
-    }, 100); // mund të ndryshosh delay sipas dëshirës
-});
 
 
 //scripti qe me rregulom fotot ne gallery
@@ -148,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-//pjesa like koment
+//pjesa e logos
 
 
 

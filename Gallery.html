@@ -12,6 +12,25 @@ body {
     background: url('s.jpg') no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
+    
+  
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('s.jpg') center/cover no-repeat fixed;
+    z-index: -1;
+    animation: dimBackground 3s forwards; /* animacion gradual */
+}
+
+/* animacioni: nga normal në zbehur */
+@keyframes dimBackground {
+    from { filter: brightness(100%); }
+    to { filter: brightness(38%); }
 }
 
 /* FOTOT-MIA BUTTONS */
@@ -20,27 +39,8 @@ body {
     src: url(fontgang.otf) format('opentype');
     
 }
-.fotot-mia {
-    display: flex;
-    gap: 40px; /* hapësira midis butonave */
-    position: absolute;
-    top: 18px;
-    left: 16px;
-}
-.fotot-mia button {
-    background: none;
-    border: none;
-    color: aliceblue;
-    font-family: 'gang', cursive;
-    font-size: 40px;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-.fotot-mia button:hover {
-    color: gold;
-        
-}
+
+
 /* container i madh */
 .gallery-container {
   max-width: 1000px; 
@@ -51,7 +51,8 @@ body {
 
 /* pjesa bosh lart për tekst */
 .gallery-header {
-  margin-bottom: 50px; /* hapësirë mes tekstit dhe fotove */
+  margin-top: 0px;
+  margin-bottom: 1px; /* hapësirë mes tekstit dhe fotove */
 }
 
 .gallery-header h2 {
@@ -187,6 +188,60 @@ body {
     font-family: 'gang2';
     src: url(fontgang2.ttf) format(opentype);
 }
+/* Slide bar poshtë */
+.slide-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color:rgb(228, 217, 217);
+  
+  display: flex;
+  justify-content: space-around;
+  padding: 4.4px ;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+/* Stilizimi i ikonave */
+.slide-bar a {
+  color: white;
+  font-size: 15px; /* madhësia e ikonës */
+  text-decoration: none;
+  padding: 1px;
+  border-radius: 50%;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.slide-bar a:hover {
+  background-color: #555;
+  transform: scale(1.2); /* efekt i vogël kur hover */
+}
+
+/* Shmang mbulimin e përmbajtjes nga slide bar */
+body {
+  padding-bottom: 60px; /* i njëjti lartësi si slide bar */
+}
+/* Të gjitha ikonat brenda slide-bar me background rrethor dhe hije */
+.slide-bar a {
+  background-color: #000000;                /* sfond i bardhë */
+  color: #ffffff;                           /* ngjyra e ikonës */
+  border-radius: 50%;                    /* rrethor */
+  padding: 12px;                         /* hapësira brenda rrethit */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* hije */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s; /* efekt hover */
+}
+
+/* Hover efekt për ikonat */
+.slide-bar a:hover {
+  transform: scale(1.2);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+}
+
+
 
 
 
@@ -204,13 +259,12 @@ body {
 
 
 
+
+
+
    
 
-<div class="fotot-mia">
-    <button onclick="window.location.href='index.html'">Home</button>
-    <button onclick="window.location.href='gallery.html'">Gallery</button>
-    <button onclick="window.location.href='contacts.html'">Contacts</button>
-</div>
+
 <!-- Modal për foton -->
  <!-- Lightbox (vetëm një herë) -->
 <div id="lightbox" class="lightbox">
@@ -220,9 +274,16 @@ body {
   <span class="next">&#10095;</span>
 </div>
 
-<!--pjesa like coment-->
+<!-- Lidh Font Awesome për ikonat -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
-<!-- pjesa like koment-->
+<!-- Slide Bar Poshtë vetëm me ikona -->
+<div class="slide-bar">
+  <a href="index.html"><i class="fas fa-home"></i></a>
+  <a href="Gallery.html"><i class="fas fa-image"></i></a>
+  <a href="#contact"><i class="fas fa-envelope"></i></a>
+  <a href="#menu"><i class="fas fa-bars"></i></a>
+</div>
 
 
 
