@@ -1,208 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    
 <head>
-   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Butoni Home</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Butoni Home</title>
+    <style>
+        /* Baza e faqes */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('s.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            padding-bottom: 80px; /* për slide-bar */
+            box-sizing: border-box;
+        }
 
-<style>
-    
-    body {
-        margin: 0;
-        padding: 0;
-        background: url('s.jpg') no-repeat center center fixed;
-        background-size: cover;
-        font-family: Arial, sans-serif;
-        
-        
-        
-        height: 100vh;
-    }
+        h1 {
+            color: #fff;
+            font-size: 40px;
+            text-align: center;
+            position: absolute;
+            top: 20px;
+            width: 100%;
+        }
 
-    h1 {
-        color: rgb(255, 255, 255);
-        font-size: 40px;
-        text-align: center;
-        position: absolute;
-        top: 20px;
-        width: 100%;
-    }
-    h2{color: #ccc;
-    text-align: center ;}
+        h2 {
+            color: #ccc;
+            text-align: center;
+        }
 
+        @font-face {
+            font-family: gang;
+            src: url(fontgang.otf) format("opentype");
+        }
 
-    
-    
-    
+        /* Slide bar poshtë */
+        .slide-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 5px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+        }
 
-@font-face{
-    font-family: gang;
-    src: url(fontgang.otf) format(opentype);
-}
-    
-/* Slide bar poshtë */
-.slide-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color:white;
-  display: flex;
-  justify-content: space-around;
-  padding: 4.4px;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-  z-index: 1000;
-}
+        .slide-bar a {
+            background-color: #000;
+            color: #fff;
+            border-radius: 50%;
+            padding: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-/* Stilizimi i ikonave */
-.slide-bar a {
-  color: white;
-  font-size: 15px; /* madhësia e ikonës */
-  text-decoration: none;
-  padding: 1px;
-  border-radius: 50%;
-  transition: background 0.3s, transform 0.2s;
-}
+        .slide-bar a:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+        }
 
-.slide-bar a:hover {
-  background-color: #555;
-  transform: scale(1.2); /* efekt i vogël kur hover */
-}
+        /* Profile */
+     
 
-/* Shmang mbulimin e përmbajtjes nga slide bar */
-body {
-  padding-bottom: 60px; /* i njëjti lartësi si slide bar */
-}
-/* Të gjitha ikonat brenda slide-bar me background rrethor dhe hije */
-.slide-bar a {
-  background-color: #000000;                /* sfond i bardhë */
-  color: #ffffff;                           /* ngjyra e ikonës */
-  border-radius: 50%;                    /* rrethor */
-  padding: 12px;                         /* hapësira brenda rrethit */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.3); /* hije */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s, box-shadow 0.3s; /* efekt hover */
-}
-
-/* Hover efekt për ikonat */
-.slide-bar a:hover {
-  transform: scale(1.2);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.4);
-}
-.profile {
-  position: absolute;
-  top: 20%;   /* vendos sipas dëshirës */
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.profile img {
-  width: 605px;
-  height: 400px;
-  object-fit:cover ;
-  border: 2px solid #c67a38;
-  filter: brightness(20%);
-}
-
-/* Logo */
-.logo img {
-    position: absolute;
-    top: 18%;   /* vendos sipas dëshirës */
-  left: -3%;
-    width: 600px;
-    height: 400px;
-    object-fit: cover;
-
-  /* fillon lart jashtë vendit dhe pa dukshmëri */
-    transform: translateY(-300px);
-    opacity: 0;
-
-    /* animacion me bounce */
-    transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        /* Logo */
+        .logo img {
+            position: absolute;
+            top: -5%;
+            left: 50%;
+            transform: translate(-50%, -300px);
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            object-fit: cover;
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
                 opacity 1.2s ease-out;
-  }
+        }
+        .profile-frame {
+    width: 618px;           /* gjerësia fikse */
+    height: 300px;          /* lartësia fikse, bën katrore */
+    border: 3px solid #c67a38; /* ngjyra e kornizës */
+    overflow: hidden;       /* mbulon pjesët që dalin jashtë */
+    position: absolute;     
+    top: 18%;               
+    left: 50%;              
+    transform: translate(-50%, -50%);
+    border-radius: 10px;    /* opsionale për cepa pak të rrumbullakosur */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* hije opsionale */
+}
+
+.profile-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* foto mbulon kornizën pa deformim */
+    filter: brightness(20%);
+}
 
 
+        /* Media Queries për celular */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+                top: 10px;
+            }
 
+            .profile {
+                top: 55%;
+            }
 
+            .slide-bar a {
+                padding: 10px;
+                font-size: 16px;
+            }
 
+            .logo img {
+                top: 5%;
+                width: 60%;
+            }
+        }
 
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
 
+            .profile {
+                top: 60%;
+            }
 
+            .slide-bar a {
+                padding: 8px;
+                font-size: 14px;
+            }
 
-
-
-
-
-    
-
-    
-
-    
-</style>
+            .logo img {
+                width: 90vw;
+                
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <div class="profile">
-  <img src="foto/fkryesore.JPG" alt="Profile Photo">
-</div>
 
+    <div class="profile-frame">
+        <img src="foto/fkryesore.JPG" alt="Profile Photo">
+    </div>
 
-<div class="logo">
-  <img src="foto/logo.png" alt="logo foto">
-</div>
+    <div class="logo">
+        <img src="foto/logo.png" alt="logo foto">
+    </div>
 
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const logo = document.querySelector(".logo img");
+            if (logo) {
+                setTimeout(() => {
+                    logo.style.transform = "translate(-50%, 0)";
+                    logo.style.opacity = "1";
+                }, 100);
+            }
+        });
+    </script>
 
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const logo = document.querySelector(".logo img");
+    <!-- Lidh Font Awesome për ikonat -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    if (logo) {
-      // vonesë e vogël për animacion
-      setTimeout(() => {
-        logo.style.transform = "translateY(0)";
-        logo.style.opacity = "1";
-      }, 100); 
-    }
-  });
-</script>
+    <!-- Slide Bar Poshtë vetëm me ikona -->
+    <div class="slide-bar">
+        <a href="index.html"><i class="fas fa-home"></i></a>
+        <a href="Gallery.html"><i class="fas fa-image"></i></a>
+        <a href="#contact"><i class="fas fa-envelope"></i></a>
+        <a href="#menu"><i class="fas fa-bars"></i></a>
+    </div>
 
-
-
-
-
-
-    
-
-<!-- Lidh Font Awesome për ikonat -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-<!-- Slide Bar Poshtë vetëm me ikona -->
-<div class="slide-bar">
-  <a href="index.html"><i class="fas fa-home"></i></a>
-  <a href="Gallery.html"><i class="fas fa-image"></i></a>
-  <a href="#contact"><i class="fas fa-envelope"></i></a>
-   <a href="#menu" class="icon" style="left:75%"><i class="fas fa-bars"></i></a>
-</div>
-
-
-
-
-
-
-
-
-    
-
-    
-    
-
-
-<script src="javascript/js.js" defer> </script>
+    <script src="javascript/js.js" defer></script>
 </body>
+
 </html>
