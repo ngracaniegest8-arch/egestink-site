@@ -105,6 +105,82 @@
     object-fit: cover;      /* foto mbulon kornizën pa deformim */
     filter: brightness(20%);
 }
+.my-button{
+    background-color: #c67a38;   /* pa ngjyrë brenda */
+      color: white;                   /* shkronja të bardha */
+      border: 2px solid yellow;
+            /* kornizë e verdhë */
+      padding: 8px 10px;             /* madhësi butoni */
+      font-size: 16px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      border-radius: 20px;               /* drejtkëndëshe pa cepa të rrumbullakosur */
+      cursor: pointer;
+      transition: 0.3s;
+  position: absolute;
+            top: 89%;
+            left: 50%;
+            transform: translate(-50%, -260px);
+            width: 40%;
+            max-width: 500px;
+            height: auto;
+            object-fit: cover;         /* heq marginat default */
+}
+.my-button:hover{
+    background-color: rgb(170, 103, 14);      /* mbushja bëhet e verdhë */
+      color: black;                  /* shkronjat bëhen të zeza */
+}
+ /*kalendari */
+
+
+.calendar {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom center;
+    width: 50%;
+    background-color: black;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 2px solid #c67a38;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.calendar.show {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.calendar button {
+    background: black;
+    color: white;
+    border: 1px solid #c67a38;
+    cursor: pointer;
+    height: 30px;
+    transition: background 0.3s;
+}
+
+.calendar button:hover {
+    background: gray;
+}
+
+.calendar button.selected {
+    background: red;
+    color: white;
+}
+
+ 
+
+
+
+
 
 
         /* Media Queries për celular */
@@ -161,6 +237,15 @@
         <img src="foto/logo.png" alt="logo foto">
     </div>
 
+   <div class="button-container">
+  <button class="my-button" id="my-button">REQUEST A CONSULTATION</button>
+  <div class="calendar" id="calendar"></div>
+</div>
+
+  
+
+  
+
     <script>
         window.addEventListener("DOMContentLoaded", () => {
             const logo = document.querySelector(".logo img");
@@ -185,6 +270,50 @@
     </div>
 
     <script src="javascript/js.js" defer></script>
+
+    <script>
+const button = document.getElementById('my-button');
+const calendar = document.getElementById('calendar');
+let selectedDate = null;
+
+// Funksion për të krijuar ditët në kalendar
+function createCalendar() {
+    // Mos e krijo dy herë nëse ekziston
+    if (calendar.innerHTML.trim() !== "") return;
+
+    for (let i = 1; i <= 31; i++) {
+        const dayBtn = document.createElement('button');
+        dayBtn.textContent = i;
+        dayBtn.addEventListener('click', (e) => {
+            if (selectedDate) selectedDate.classList.remove('selected');
+            e.target.classList.add('selected');
+            selectedDate = e.target;
+            button.textContent = `Date Selected: ${i}`;
+            calendar.classList.remove('show');
+        });
+        calendar.appendChild(dayBtn);
+    }
+}
+
+// Event për butonin
+button.addEventListener('click', (e) => {
+    e.stopPropagation();
+    createCalendar(); // krijo ditët vetëm herën e parë
+    calendar.classList.toggle('show');
+});
+
+// Mbyll kur klikoj jashtë
+document.addEventListener('click', (e) => {
+    if (!button.contains(e.target) && !calendar.contains(e.target)) {
+        calendar.classList.remove('show');
+    }
+});
+
+
+
+
+
+</script>
 </body>
 
 </html>
