@@ -175,6 +175,29 @@
     background: red;
     color: white;
 }
+/*formulari*/
+.client-form {
+    display: none;
+    position: absolute;
+    top: 200px; /* i njëjti top si kalendari */
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px); /* fillon pak lart për efekt slide */
+    background: black;
+    color: white;
+    padding: 20px;
+    border: 2px solid #c67a38;
+    border-radius: 10px;
+    z-index: 1000;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.client-form.show {
+    display: block;
+    transform: translateX(-50%) translateY(0); /* zbret gradualisht në vendin e kalendarit */
+    opacity: 1;
+}
+
 
  
 
@@ -224,6 +247,18 @@
                 
             }
         }
+        .success-message {
+  text-align: center;
+  font-size: 20px;
+  color: #00ff6a;
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
     </style>
 </head>
 
@@ -240,7 +275,21 @@
    <div class="button-container">
   <button class="my-button" id="my-button">REQUEST A CONSULTATION</button>
   <div class="calendar" id="calendar"></div>
+  
 </div>
+
+<!--pjesa per te mbyllur takim-->
+<div class="client-form" id="clientForm">
+    <h3>Plotëso të dhënat:</h3>
+    <form id="form" action="https://formspree.io/f/mvgwbdbl" method="POST">
+        <input type="hidden" name="date" id="selectedDateInput">
+        <label>Emri:<br><input type="text" name="emri" required></label><br><br>
+        <label>Mbiemri:<br><input type="text" name="mbiemri" required></label><br><br>
+        <label>Numri i celularit:<br><input type="text" name="cel" required></label><br><br>
+        <button type="submit">Mbyll Takim</button>
+    </form>
+</div>
+
 
   
 
@@ -274,23 +323,36 @@
     <script>
 const button = document.getElementById('my-button');
 const calendar = document.getElementById('calendar');
+const clientForm = document.getElementById('clientForm');
+const selectedDateInput = document.getElementById('selectedDateInput');
+
 let selectedDate = null;
 
 // Funksion për të krijuar ditët në kalendar
 function createCalendar() {
-    // Mos e krijo dy herë nëse ekziston
     if (calendar.innerHTML.trim() !== "") return;
 
     for (let i = 1; i <= 31; i++) {
         const dayBtn = document.createElement('button');
         dayBtn.textContent = i;
+
         dayBtn.addEventListener('click', (e) => {
             if (selectedDate) selectedDate.classList.remove('selected');
             e.target.classList.add('selected');
             selectedDate = e.target;
             button.textContent = `Date Selected: ${i}`;
             calendar.classList.remove('show');
+
+            // Shfaq forma për klientin me animacion
+            clientForm.style.display = 'block';
+            setTimeout(() => {
+                clientForm.classList.add('show');
+            }, 10); // vogël vonesë për të aktivizuar transition
+            selectedDateInput.value = i;
+
+            clientForm.scrollIntoView({ behavior: 'smooth' });
         });
+
         calendar.appendChild(dayBtn);
     }
 }
@@ -304,11 +366,47 @@ button.addEventListener('click', (e) => {
 
 // Mbyll kur klikoj jashtë
 document.addEventListener('click', (e) => {
-    if (!button.contains(e.target) && !calendar.contains(e.target)) {
+    if (!button.contains(e.target) && !calendar.contains(e.target) && !clientForm.contains(e.target)) {
         calendar.classList.remove('show');
+        // fsheh forma me animacion
+        clientForm.classList.remove('show');
+        setTimeout(() => {
+            clientForm.style.display = 'none';
+        }, 400); // pris 400ms për të përfunduar animacionin
     }
 });
+//fsheja e faqes 
+// 🟢 Dërgimi i formularit pa hapur faqen e Formspree
+form.addEventListener('submit', async (e) => {
+  e.preventDefault(); // ndalon hapjen e faqes Formspree
 
+  const formData = new FormData(form);
+  const action = form.getAttribute('action');
+
+  try {
+    const response = await fetch(action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      clientForm.innerHTML = `
+        <div class="success-message">
+          ✅ Takimi u mbyll me sukses!
+        </div>
+      `;
+      setTimeout(() => {
+        clientForm.classList.remove('show');
+        setTimeout(() => clientForm.style.display = 'none', 300);
+      }, 2000);
+    } else {
+      alert("❌ Dërgimi dështoi. Provo përsëri.");
+    }
+  } catch (error) {
+    alert("❌ Gabim gjatë dërgimit. Kontrollo lidhjen.");
+  }
+});
 
 
 
