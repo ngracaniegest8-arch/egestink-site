@@ -75,7 +75,7 @@
         /* Logo */
         .logo img {
             position: absolute;
-            top: -5%;
+            top: 15%;
             left: 50%;
             transform: translate(-50%, -300px);
             width: 90%;
@@ -84,17 +84,33 @@
             object-fit: cover;
             opacity: 0;
             transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-                opacity 1.2s ease-out;
+                opacity 2s ease-out;
         }
+        .logo img.visible {
+    opacity: 1;
+    animation: pulse 4s ease-in-out infinite;
+}
+
+/* efekti pulsimi (frymëmarrje) */
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, 0) scale(1);
+    }
+    50% {
+        transform: translate(-50%, 0) scale(1.05);
+    }
+}
+        
+
         .profile-frame {
-    width: 618px;           /* gjerësia fikse */
-    height: 300px;          /* lartësia fikse, bën katrore */
+    width: 50%;           /* gjerësia fikse */
+    height: 40%;          /* lartësia fikse, bën katrore */
     border: 3px solid #c67a38; /* ngjyra e kornizës */
     overflow: hidden;       /* mbulon pjesët që dalin jashtë */
-    position: absolute;     
-    top: 18%;               
-    left: 50%;              
-    transform: translate(-50%, -50%);
+    margin: 0 auto;    
+       
+    
+    
     border-radius: 10px;    /* opsionale për cepa pak të rrumbullakosur */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* hije opsionale */
 }
@@ -102,6 +118,7 @@
 .profile-frame img {
     width: 100%;
     height: 100%;
+    
     object-fit: cover;      /* foto mbulon kornizën pa deformim */
     filter: brightness(20%);
 }
@@ -117,7 +134,7 @@
       cursor: pointer;
       transition: 0.3s;
   position: absolute;
-            top: 89%;
+            top: 70%;
             left: 50%;
             transform: translate(-50%, -260px);
             width: 40%;
@@ -197,6 +214,16 @@
     transform: translateX(-50%) translateY(0); /* zbret gradualisht në vendin e kalendarit */
     opacity: 1;
 }
+.mbyll-takim{
+    margin-left: 45px;
+    border-radius: 20px;
+    background-color: rgb(170, 103, 14);  /* ndryshon ngjyrë në hover */
+  color: black;
+  border-color: #f49c10f4;
+  transform: scale(1.05);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
 
 
  
@@ -212,9 +239,14 @@
                 font-size: 28px;
                 top: 10px;
             }
+            .my-button{
+                top: 95%;
+            }
 
             .profile {
-                top: 55%;
+                top: 0%;
+                 
+
             }
 
             .slide-bar a {
@@ -233,8 +265,11 @@
                 font-size: 22px;
             }
 
-            .profile {
-                top: 60%;
+            .profile-frame {
+                width: 99%;           /* gjerësia fikse */
+    height: 35%;          /* lartësia fikse, bën katrore */
+                top: 0%;
+               
             }
 
             .slide-bar a {
@@ -259,10 +294,12 @@
   to { opacity: 1; transform: scale(1); }
 }
 
+
     </style>
 </head>
 
 <body>
+    
 
     <div class="profile-frame">
         <img src="foto/fkryesore.JPG" alt="Profile Photo">
@@ -286,7 +323,7 @@
         <label>Emri:<br><input type="text" name="emri" required></label><br><br>
         <label>Mbiemri:<br><input type="text" name="mbiemri" required></label><br><br>
         <label>Numri i celularit:<br><input type="text" name="cel" required></label><br><br>
-        <button type="submit">Mbyll Takim</button>
+        <button type="submit" class="mbyll-takim">Mbyll Takim</button>
     </form>
 </div>
 
@@ -296,15 +333,18 @@
   
 
     <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const logo = document.querySelector(".logo img");
-            if (logo) {
-                setTimeout(() => {
-                    logo.style.transform = "translate(-50%, 0)";
-                    logo.style.opacity = "1";
-                }, 100);
-            }
-        });
+      
+window.addEventListener("DOMContentLoaded", () => {
+    const logo = document.querySelector(".logo img");
+    if (logo) {
+        // vonesë e vogël që të duket më natyrale
+        setTimeout(() => {
+            logo.classList.add("visible");
+        }, 200);
+    }
+});
+
+
     </script>
 
     <!-- Lidh Font Awesome për ikonat -->
@@ -412,6 +452,7 @@ form.addEventListener('submit', async (e) => {
 
 
 </script>
+
 </body>
 
 </html>
