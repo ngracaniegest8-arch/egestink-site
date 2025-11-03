@@ -75,10 +75,10 @@
         /* Logo */
         .logo img {
             position: absolute;
-            top: 15%;
+            top: 25%;
             left: 50%;
-            transform: translate(-50%, -300px);
-            width: 90%;
+            transform: translate(-50%, -50px);
+            width: 50%;
             max-width: 500px;
             height: auto;
             object-fit: cover;
@@ -123,9 +123,9 @@
     filter: brightness(20%);
 }
 .my-button{
-    background-color: #c67a38;   /* pa ngjyrë brenda */
+    background-color: #d46012;   /* pa ngjyrë brenda */
       color: white;                   /* shkronja të bardha */
-      border: 2px solid yellow;
+      border: 2px solid #c67a38;
             /* kornizë e verdhë */
       padding: 8px 10px;             /* madhësi butoni */
       font-size: 16px;
@@ -133,13 +133,14 @@
       border-radius: 20px;               /* drejtkëndëshe pa cepa të rrumbullakosur */
       cursor: pointer;
       transition: 0.3s;
-  position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -260px);
-            width: 40%;
+  position: relative;
+            top: 50%;
+            left: 48%;
+            transform: translate(-40%, -40%);
+            
+            width: 50%;
             max-width: 500px;
-            height: auto;
+            
             object-fit: cover;         /* heq marginat default */
 }
 .my-button:hover{
@@ -224,6 +225,56 @@
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 }
+/*butoni menu me slidebar*/
+/* Butoni që hap menunë */
+.menu-btn {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  z-index: 1001;
+}
+
+/* Paneli anësor */
+.sidebar {
+  height: 100%;
+  width: 0; /* fillon i fshehur */
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  z-index: 1000;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Lidhjet brenda menusë */
+.sidebar a {
+  padding: 12px 24px;
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #c67a38;
+  color: white;
+}
+
+/* Butoni i mbylljes */
+.sidebar .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 36px;
+}
+
 
 
  
@@ -240,7 +291,9 @@
                 top: 10px;
             }
             .my-button{
-                top: 95%;
+                top: 55%;
+                left: 45%;
+                
             }
 
             .profile {
@@ -255,8 +308,8 @@
             }
 
             .logo img {
-                top: 5%;
-                width: 60%;
+                top: 20%;
+                width: 50%;
             }
         }
 
@@ -354,9 +407,25 @@ window.addEventListener("DOMContentLoaded", () => {
     <div class="slide-bar">
         <a href="index.html"><i class="fas fa-home"></i></a>
         <a href="Gallery.html"><i class="fas fa-image"></i></a>
-        <a href="#contact"><i class="fas fa-envelope"></i></a>
-        <a href="#menu"><i class="fas fa-bars"></i></a>
+        <a href="#contACT"><i class="fas fa-envelope"></i></a>
+        <a href="javascript:void(0)" onclick="toggleMenu()"><i class="fas fa-bars"></i></a>
     </div>
+    <!--butoni menu me slidebar-->
+    <!-- Butoni ekzistues -->
+
+
+<!-- Slide bar që do hapet -->
+<div id="sidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+  <a href="index.html">Home</a>
+  <a href="Gallery.html">Gallery</a>
+  <a href="Drawing.html">Drawing</a>
+  <a href="#">Pictures</a>
+  <a href="#">Tattoo Supply</a>
+  <a href="#">Shop</a>
+</div>
+
+
 
     <script src="javascript/js.js" defer></script>
 
@@ -447,6 +516,18 @@ form.addEventListener('submit', async (e) => {
     alert("❌ Gabim gjatë dërgimit. Kontrollo lidhjen.");
   }
 });
+//buroni menu me slidebar
+
+function toggleMenu() {
+  const sidebar = document.getElementById("sidebar");
+  if (sidebar.style.width === "250px") {
+    sidebar.style.width = "0";
+  } else {
+    sidebar.style.width = "250px";
+  }
+}
+
+
 
 
 
