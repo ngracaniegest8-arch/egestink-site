@@ -242,52 +242,51 @@ body {
 }
 /*butoni menu me slidebar*/
 /* Butoni që hap menunë */
+.sidebar a:not(.closebtn) {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; }
 .menu-btn {
-  position: fixed;
-  top: 25px;
-  right: 25px;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  z-index: 1001;
+position: fixed;
+top: 25px;
+right: 25px;
+font-size: 30px;
+
+cursor: pointer;
+color: white;
+z-index: 1001;
 }
 
-/* Paneli anësor */
 .sidebar {
-  height: 100%;
-  width: 0; /* fillon i fshehur */
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.4s;
-  padding-top: 60px;
-  z-index: 1000;
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+position: fixed;
+top: 60px;
+right: 20px;
+display: flex;
+flex-direction: column;
+gap: 15px;
+z-index: 1000;
 }
 
-/* Lidhjet brenda menusë */
 .sidebar a {
-  padding: 12px 24px;
-  text-decoration: none;
-  font-size: 20px;
-  color: black;
-  display: block;
-  transition: 0.3s;
+padding: 10px 20px;
+background-color: #ffffff;
+color: rgb(0, 0, 0);
+text-decoration: none;
+border-radius: 20px;
+border: 2px solid #cfa02c;  /* ngjyra ari */
+transform: translateX(100%); /* fillimisht jashtë ekranit */
+opacity: 0;
+transition: transform 0.4s ease, opacity 0.4s ease;
+
 }
 
+.sidebar a.show {
+transform: translateX(0);
+opacity: 1;
+}
+
+/* opsionale për hover */
 .sidebar a:hover {
-  background-color: #c67a38;
-  color: white;
-}
-
-/* Butoni i mbylljes */
-.sidebar .closebtn {
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  font-size: 36px;
+background-color: #c67a38;
+color: white;
 }
 
 
@@ -334,10 +333,9 @@ body {
 </div>
 <!-- menu dhe slide bari -->
  <!-- Slide bar që do hapet -->
-<div id="sidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" onclick="toggleMenu()">&times;</a>
+<div class="sidebar">
   <a href="index.html">Home</a>
-  <a href="Gallery.html">Gallery</a>
+  <a href="Gallery.html">Tattoo Gallery</a>
   <a href="Drawing.html">Drawing</a>
   <a href="#">Pictures</a>
   <a href="#">Tattoo Supply</a>
@@ -410,6 +408,11 @@ body {
 
     <div class="photo">
       <img src="foto/F19.JPG" alt="Foto4">
+      <div class="overlay"></div>
+    </div>
+
+    <div class="photo">
+      <img src="foto/F24.JPG" alt="Foto4">
       <div class="overlay"></div>
     </div>
 

@@ -133,12 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
 //pjesa e logos
 
 function toggleMenu() {
-  const sidebar = document.getElementById("sidebar");
-  if (sidebar.style.width === "250px") {
-    sidebar.style.width = "0";
-  } else {
-    sidebar.style.width = "250px";
-  }
+const links = document.querySelectorAll(".sidebar a");
+links.forEach((link, index) => {
+setTimeout(() => {
+link.classList.toggle("show");
+}, index * 100); // delay për efektin rradhës
+});
 }
 
 
