@@ -263,6 +263,7 @@ display: flex;
 flex-direction: column;
 gap: 15px;
 z-index: 1000;
+pointer-events: none;
 }
 
 
@@ -277,12 +278,14 @@ border: 2px solid #cfa02c;  /* ngjyra ari */
 transform: translateX(100%); /* fillimisht jashtë ekranit */
 opacity: 0;
 transition: transform 0.4s ease, opacity 0.4s ease;
+pointer-events: none;
 
 }
 
 .sidebar a.show {
 transform: translateX(0);
 opacity: 1;
+pointer-events: auto;
 }
 
 /* opsionale për hover */

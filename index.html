@@ -160,7 +160,7 @@
     left: 50%;
     transform: translateX(-50%) scale(0);
     transform-origin: bottom center;
-    width: 50%;
+    width: 65%;
     background-color: black;
     padding: 10px;
     box-sizing: border-box;
@@ -253,6 +253,7 @@ display: flex;
 flex-direction: column;
 gap: 15px;
 z-index: 1000;
+pointer-events: none;
 }
 
 .sidebar a {
@@ -265,12 +266,15 @@ border: 2px solid #cfa02c;  /* ngjyra ari */
 transform: translateX(100%); /* fillimisht jashtë ekranit */
 opacity: 0;
 transition: transform 0.4s ease, opacity 0.4s ease;
+pointer-events: none;
+
 
 }
 
 .sidebar a.show {
 transform: translateX(0);
 opacity: 1;
+pointer-events: auto;
 }
 
 /* opsionale për hover */
@@ -527,7 +531,27 @@ form.addEventListener('submit', async (e) => {
 //buroni menu me slidebar
 
 /* JS */
+
+
 function toggleMenu() {
+    // Klik jashtë sidebar për ta mbyllur me të njëjtin efekt
+document.addEventListener('click', (e) => {
+    const sidebar = document.querySelector('.sidebar');
+    const menuBtn = document.querySelector('.slide-bar a:last-child'); // ikona e menu-së
+
+    // Kontrollon nëse klikimi nuk është mbi sidebar ose mbi butonin menu
+    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        const links = Array.from(sidebar.querySelectorAll('a.show'));
+
+        // i heq klasat show me delay rradhës, njësoj si toggleMenu
+        links.forEach((link, index) => {
+            setTimeout(() => {
+                link.classList.remove('show');
+            }, index * 100); // delay i njëjtë si hapja
+        });
+    }
+});
+
 const links = document.querySelectorAll(".sidebar a");
 links.forEach((link, index) => {
 setTimeout(() => {
@@ -535,6 +559,7 @@ link.classList.toggle("show");
 }, index * 100); // delay për efektin rradhës
 });
 }
+
 
 
 

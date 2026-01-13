@@ -47,6 +47,32 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
 
   // Hap lightbox kur klikohet një foto
+  let touchStartX = 0;
+let touchEndX = 0;
+
+lightbox.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+lightbox.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleGesture();
+});
+
+function handleGesture() {
+  const threshold = 50; // distanca minimale për të konsideruar swipe
+  if (touchEndX < touchStartX - threshold) {
+    // swipe majtas → next photo
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+  if (touchEndX > touchStartX + threshold) {
+    // swipe djathtas → previous photo
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+  }
+}
+
   images.forEach((img, index) => {
     img.addEventListener("click", () => {
       currentIndex = index;
@@ -133,6 +159,24 @@ document.addEventListener("DOMContentLoaded", () => {
 //pjesa e logos
 
 function toggleMenu() {
+  // Klik jashtë sidebar për ta mbyllur me të njëjtin efekt
+document.addEventListener('click', (e) => {
+    const sidebar = document.querySelector('.sidebar');
+    const menuBtn = document.querySelector('.slide-bar a:last-child'); // ikona e menu-së
+
+    // Kontrollon nëse klikimi nuk është mbi sidebar ose mbi butonin menu
+    if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        const links = Array.from(sidebar.querySelectorAll('a.show'));
+
+        // i heq klasat show me delay rradhës, njësoj si toggleMenu
+        links.forEach((link, index) => {
+            setTimeout(() => {
+                link.classList.remove('show');
+            }, index * 100); // delay i njëjtë si hapja
+        });
+    }
+});
+
 const links = document.querySelectorAll(".sidebar a");
 links.forEach((link, index) => {
 setTimeout(() => {
@@ -142,3 +186,4 @@ link.classList.toggle("show");
 }
 
 
+//per fotot me swipe majtas djathtas
